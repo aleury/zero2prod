@@ -48,9 +48,9 @@ jobs:
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_MOD }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-$(echo ${SQLX_FEATURES//,/_})
         env:
-          SQLX_FEATURES_MOD: ${SQLX_FEATURES//,/_}
+          SQLX_FEATURES: ${{ env.SQLX_FEATURES }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
@@ -131,9 +131,9 @@ jobs:
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_MOD }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-$(echo ${SQLX_FEATURES//,/_})
         env:
-          SQLX_FEATURES_MOD: ${SQLX_FEATURES//,/_}
+          SQLX_FEATURES: ${{ env.SQLX_FEATURES }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
@@ -201,9 +201,9 @@ jobs:
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_MOD }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-$(echo ${SQLX_FEATURES//,/_})
         env:
-          SQLX_FEATURES_MOD: ${SQLX_FEATURES//,/_}
+          SQLX_FEATURES: ${{ env.SQLX_FEATURES }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
