@@ -24,6 +24,7 @@ async fn spawn_app() -> TestApp {
 
     let mut configuration = get_configuration().expect("Failed to read configuration");
     let db_pool = configure_database(&mut configuration.database).await;
+
     let server = zero2prod::startup::run(listener, db_pool.clone()).expect("Failed to run server");
     let _ = tokio::spawn(server);
 
