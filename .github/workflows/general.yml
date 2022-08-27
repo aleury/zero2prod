@@ -42,15 +42,14 @@ jobs:
           toolchain: stable
           override: true
 
+      - run: echo "SQLX_FEATURES_NO_COMMA=${SQLX_FEATURES//,/_}" >> $GITHUB_ENV
       - name: Cache sqlx-cli
         uses: actions/cache@v2
         id: cache-sqlx
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-$(echo ${SQLX_FEATURES//,/_})
-        env:
-          SQLX_FEATURES: ${{ env.SQLX_FEATURES }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
@@ -125,15 +124,14 @@ jobs:
           toolchain: stable
           override: true
 
+      - run: echo "SQLX_FEATURES_NO_COMMA=${SQLX_FEATURES//,/_}" >> $GITHUB_ENV
       - name: Cache sqlx-cli
         uses: actions/cache@v2
         id: cache-sqlx
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-$(echo ${SQLX_FEATURES//,/_})
-        env:
-          SQLX_FEATURES: ${{ env.SQLX_FEATURES }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
@@ -195,15 +193,14 @@ jobs:
           toolchain: stable
           override: true
 
+      - run: echo "SQLX_FEATURES_NO_COMMA=${SQLX_FEATURES//,/_}" >> $GITHUB_ENV
       - name: Cache sqlx-cli
         uses: actions/cache@v2
         id: cache-sqlx
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-$(echo ${SQLX_FEATURES//,/_})
-        env:
-          SQLX_FEATURES: ${{ env.SQLX_FEATURES }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
