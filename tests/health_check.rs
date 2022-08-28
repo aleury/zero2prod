@@ -36,7 +36,7 @@ async fn spawn_app() -> TestApp {
 }
 
 async fn configure_database(config: &mut DatabaseSettings) -> PgPool {
-    // Generate uique database name and create database
+    // Generate unique database name and create database
     config.database_name = Uuid::new_v4().to_string();
     let mut connection = PgConnection::connect(&config.connection_string_without_db())
         .await
