@@ -9,6 +9,7 @@ use zero2prod::telemetry::{get_subscriber, init_subscriber};
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    // Setup tracing subscriber.
     let subscriber = get_subscriber("zero2prod".into(), "info".into(), std::io::stdout);
     init_subscriber(subscriber);
 
@@ -21,5 +22,6 @@ async fn main() -> std::io::Result<()> {
     let address = format!("127.0.0.1:{}", configuration.application_port);
     let listener = TcpListener::bind(address)?;
 
+    // Start the app server.
     run(listener, connection_pool)?.await
 }
