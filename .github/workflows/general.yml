@@ -49,7 +49,7 @@ jobs:
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.toml') }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
@@ -143,7 +143,7 @@ jobs:
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}-${{ hashFiles('**/Cargo.toml') }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
@@ -212,7 +212,7 @@ jobs:
         with:
           path: |
             ~/.cargo/bin/sqlx
-          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}
+          key: ${{ runner.os }}-sqlx-${{ env.SQLX_VERSION }}-${{ env.SQLX_FEATURES_NO_COMMA }}-${{ hashFiles('**/Cargo.toml') }}
 
       - name: Install sqlx-cli
         uses: actions-rs/cargo@v1
