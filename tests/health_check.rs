@@ -1,5 +1,4 @@
 use once_cell::sync::Lazy;
-use secrecy::ExposeSecret;
 use std::net::TcpListener;
 
 use sqlx::{Connection, Executor, PgConnection, PgPool};
@@ -56,17 +55,16 @@ async fn spawn_app() -> TestApp {
 async fn configure_database(config: &mut DatabaseSettings) -> PgPool {
     // Generate unique database name and create database
     config.database_name = Uuid::new_v4().to_string();
-    let mut connection =
-        PgConnection::connect(&config.connection_string_without_db().expose_secret())
-            .await
-            .expect("Failed to connect to Postgres");
+    let mut connection = PgConnection::connect_with(&config.without_db())
+        .await
+        .expect("Failed to connect to Postgres");
     connection
         .execute(format!(r#"CREATE DATABASE "{}";"#, config.database_name).as_str())
         .await
         .expect("Failed to create database");
 
     // Migrate database
-    let connection_pool = PgPool::connect(&config.connection_string().expose_secret())
+    let connection_pool = PgPool::connect_with(config.with_db())
         .await
         .expect("Failed to connect to Postgres.");
 
@@ -81,10 +79,9 @@ async fn configure_database(config: &mut DatabaseSettings) -> PgPool {
 pub async fn drop_database(config: &DatabaseSettings) {
     println!("Dropping database {}", config.database_name);
 
-    let mut connection =
-        PgConnection::connect(config.connection_string_without_db().expose_secret())
-            .await
-            .expect("Failed to connect to Postgres");
+    let mut connection = PgConnection::connect_with(&config.without_db())
+        .await
+        .expect("Failed to connect to Postgres");
 
     connection
         .execute(format!(r#"DROP DATABASE "{}" WITH (FORCE);"#, config.database_name).as_str())
