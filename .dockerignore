@@ -1,9 +1,13 @@
+# files
 .env
 .gitignore
 Dockerfile
 README.md
+
+# directories
 .idea/
 .github/
+migrations/
 scripts/
 target/
 tests/
